@@ -1,0 +1,28 @@
+const express = require('express')
+
+const app = express()
+
+
+
+const port = 5000
+
+const arrayToTable = require('array-to-table');
+ 
+const myRecords ={
+	"name":"faizan",
+	"email":"f@ril.com",
+	"add":
+	{
+		"country":"india",
+		"city": [{ "city1":"mumbai", "city2":"ratnagiri"}]
+	}
+}
+
+app.get('/getdatainjson',(req, res) => {
+    var myArray = [];
+    myArray.push(myRecords);
+    console.log(myRecords.add[0].city)
+    res.send(arrayToTable(myArray[0])) 
+})
+
+app.listen(port, () => console.log(`API listening on port ${port}!`))
